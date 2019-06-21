@@ -4,7 +4,9 @@ use std::io::Read;
 use std::fs::File;
 use std::process;
 
-fn main()  -> io::Result<()> {
+#[no_mangle]
+fn test_main() -> io::Result<()> {
+
 	let mut args: Vec<String> = env::args().collect();
 
 	if args.len() < 2 {
@@ -46,4 +48,10 @@ fn main()  -> io::Result<()> {
 	}
 
 	return Ok(());
+
+}
+
+
+fn main()  -> io::Result<()> {
+	test_main()
 }
