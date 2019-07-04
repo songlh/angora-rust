@@ -58,7 +58,7 @@ bool UnfoldBranch::doInitialization(Module &M) {
 	srandom(1851655);
 	Type *FnArgs[1] = {Int32Ty};
 	FunctionType * FnTy = FunctionType::get(VoidTy, FnArgs, /*isVarArg=*/false);
-	FnTy->dump();
+	//FnTy->dump();
 	UnfoldBranchFn = M.getOrInsertFunction("__unfold_branch_fn", FnTy);
 
 	if (Function * F = dyn_cast<Function>(UnfoldBranchFn)) {

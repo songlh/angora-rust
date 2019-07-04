@@ -390,7 +390,7 @@ int main(int argc, char **argv) {
 	printf("\n");
   
  	
- 	return 0;
+// 	return 0;
 
 	execvp(cc_params[0], (char **)cc_params);
 
