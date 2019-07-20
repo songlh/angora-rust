@@ -305,7 +305,7 @@ static void edit_params(u32 argc, char **argv) {
 		// FIXME: or use the same header
 		// cc_params[cc_par_cnt++] = "-I/path-to-llvm/include/c++/v1";
 		if (clang_type == CLANG_FAST_TYPE) {
-			cc_params[cc_par_cnt++] = alloc_printf("-L%s/libcxx_fast/", obj_path);
+			cc_params[cc_par_cnt++] = alloc_printf("-L%s/libcxx_fast%s/", obj_path, bit_mode==32?"_x86":"");
 			cc_params[cc_par_cnt++] = "-stdlib=libc++";
 			cc_params[cc_par_cnt++] = "-Wl,--start-group";
 			cc_params[cc_par_cnt++] = "-lc++abifast";
@@ -313,7 +313,7 @@ static void edit_params(u32 argc, char **argv) {
 			cc_params[cc_par_cnt++] = "-Wl,--end-group";
 		}
 		else if (clang_type == CLANG_TRACK_TYPE) {
-			cc_params[cc_par_cnt++] = alloc_printf("-L%s/libcxx_track/", obj_path);
+			cc_params[cc_par_cnt++] = alloc_printf("-L%s/libcxx_track%s/", obj_path, bit_mode==32?"_x86":"");
 			cc_params[cc_par_cnt++] = "-stdlib=libc++";
 			cc_params[cc_par_cnt++] = "-Wl,--start-group";
 			cc_params[cc_par_cnt++] = "-lc++abitrack";
@@ -331,19 +331,19 @@ static void edit_params(u32 argc, char **argv) {
 
 		add_angora_runtime();
 
-		switch (bit_mode) {
+		/*switch (bit_mode) {
 			case 0:
 				break;
 			case 32:
-				/* if (access(cc_params[cc_par_cnt - 1], R_OK)) */
+				// if (access(cc_params[cc_par_cnt - 1], R_OK)) 
 				FATAL("-m32 is not supported by your compiler");
 				break;
 
 			case 64:
-				/* if (access(cc_params[cc_par_cnt - 1], R_OK)) */
+				// if (access(cc_params[cc_par_cnt - 1], R_OK)) 
 				FATAL("-m64 is not supported by your compiler");
 				break;
-		}
+		}*/
 	}
 
 	cc_params[cc_par_cnt] = NULL;

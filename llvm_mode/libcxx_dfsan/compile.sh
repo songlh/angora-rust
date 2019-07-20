@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LLVM_VERSION=7.0.0
+LLVM_VERSION=8.0.0
 
 NINJA_B=`which ninja 2>/dev/null`
 
@@ -62,7 +62,7 @@ ninja cxx cxxabi
 cd ..
 mkdir build_track && cd build_track/
 
-CC=~/angora/bin/angora-clang CXX=~/angora/bin/angora-clang++ cmake -G Ninja ../llvm_src  -DLIBCXXABI_ENABLE_SHARED=NO -DLIBCXX_ENABLE_SHARED=NO -DLIBCXX_CXX_ABI=libcxxabi 
+CC=~/angora-rust/angora-rust/bin/angora-clang CXX=~/angora-rust/angora-rust/bin/angora-clang++ cmake -G Ninja ../llvm_src  -DLIBCXXABI_ENABLE_SHARED=NO -DLIBCXX_ENABLE_SHARED=NO -DLIBCXX_CXX_ABI=libcxxabi 
 #-DLLVM_FORCE_USE_OLD_TOOLCHAIN=YES 
 USE_DFSAN=1 ninja cxx cxxabi
 
